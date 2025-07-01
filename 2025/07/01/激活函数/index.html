@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://img.fangkaipeng.com/blog_img/20220713141018.png">
 <meta property="og:image" content="https://img.fangkaipeng.com/blog_img/20220713141320.png">
 <meta property="article:published_time" content="2025-07-01T07:54:52.000Z">
-<meta property="article:modified_time" content="2025-07-01T08:08:54.150Z">
+<meta property="article:modified_time" content="2025-07-01T08:13:27.742Z">
 <meta property="article:author" content="zhangshuxuan">
 <meta property="article:tag" content="神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -280,19 +280,19 @@
             
               <div class="markdown-body">
                 
-                <h3 id="什么是激活函数"><a href="#什么是激活函数" class="headerlink" title="什么是激活函数"></a>什么是激活函数</h3><p><strong>激活函数（Activation Function）是一种添加到人工神经网络中的函数，旨在帮助网络学习数据中的复杂模式。在神经元中，输入的input经过一系列加权求和后作用于另一个函数，这个函数就是这里的激活函数</strong>。</p>
-<p>激活函数可以分为<strong>线性激活函数</strong>（线性方程控制输入到输出的映射，如f(x)&#x3D;x等）以及<strong>非线性激活函数</strong>（非线性方程控制输入到输出的映射，比如<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=169155866&content_type=Article&match_order=1&q=Sigmoid&zhida_source=entity">Sigmoid</a>、<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=169155866&content_type=Article&match_order=1&q=Tanh&zhida_source=entity">Tanh</a>、ReLU、LReLU、PReLU、Swish 等）</p>
-<h3 id="为什么要用激活函数"><a href="#为什么要用激活函数" class="headerlink" title="为什么要用激活函数"></a>为什么要用激活函数</h3><p>神经网络中每一层的输入输出都是一个线性求和的过程，下一层的输出只是承接了上一层输入函数的线性变换，所以如果没有激活函数，那么无论你构造的神经网络多么复杂，有多少层，最后的输出都是输入的线性组合，纯粹的线性组合并不能够解决更为复杂的问题。而引入激活函数之后，我们会发现常见的激活函数都是非线性的，因此也会给神经元引入非线性元素，使得神经网络可以逼近其他的任何非线性函数，这样可以使得神经网络应用到更多非线性模型中。</p>
-<h3 id="常见的激活函数"><a href="#常见的激活函数" class="headerlink" title="常见的激活函数"></a>常见的激活函数</h3><h4 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h4><p><img src="https://img.fangkaipeng.com/blog_img/20220713135205.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+                <h2 id="什么是激活函数"><a href="#什么是激活函数" class="headerlink" title="什么是激活函数"></a>什么是激活函数</h2><p><strong>激活函数（Activation Function）是一种添加到人工神经网络中的函数，旨在帮助网络学习数据中的复杂模式。在神经元中，输入的input经过一系列加权求和后作用于另一个函数，这个函数就是这里的激活函数</strong>。</p>
+<p>激活函数可以分为<strong>线性激活函数</strong>（线性方程控制输入到输出的映射，如f(x)&#x3D;x等）以及<strong>非线性激活函数</strong>（非线性方程控制输入到输出的映射，比如Sigmoid、Tanh、ReLU、LReLU、PReLU、Swish 等）</p>
+<h2 id="为什么要用激活函数"><a href="#为什么要用激活函数" class="headerlink" title="为什么要用激活函数"></a>为什么要用激活函数</h2><p>神经网络中每一层的输入输出都是一个线性求和的过程，下一层的输出只是承接了上一层输入函数的线性变换，所以如果没有激活函数，那么无论你构造的神经网络多么复杂，有多少层，最后的输出都是输入的线性组合，纯粹的线性组合并不能够解决更为复杂的问题。而引入激活函数之后，我们会发现常见的激活函数都是非线性的，因此也会给神经元引入非线性元素，使得神经网络可以逼近其他的任何非线性函数，这样可以使得神经网络应用到更多非线性模型中。</p>
+<h2 id="常见的激活函数"><a href="#常见的激活函数" class="headerlink" title="常见的激活函数"></a>常见的激活函数</h2><h3 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h3><p><img src="https://img.fangkaipeng.com/blog_img/20220713135205.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>Sigmoid函数的数学表达形式为：<br>$$<br>\sigma(x) &#x3D; \frac{1}{1 + e^{-x}}<br>$$<br>它接受一个实数并将其压缩到0-1的范围内，其中大的负数将会变成0，而大的正数将会变成1。sigmoid函数有两个主要的缺点：</p>
 <ul>
 <li><strong>导致梯度饱和或消失：</strong> 当输入值很大或很小时，sigmoid函数的导数接近0。而在反向传播的时候，这个局部梯度将会和上游传来的梯度进行相乘。因此，如果局部梯度非常小，那么它将“杀死”梯度，使得几乎没有信号从这个神经元中传出，导致训练缓慢或停滞。此外，初始化的时候也需要保持谨慎，以防止一开始的时候神经元就出现梯度消失的问题。</li>
 <li><strong>输出不是零均值化的（zero-centered）：</strong> sigmoid输出范围是(0,1)，不是以0为中心。如果输入的数据一直保持正的，那么在反向传播时，权值 w 的梯度将会全部为正或全部为负（取决于上游传来的梯度正负）。这就导致根据梯度更新参数时产生Z字抖动，即只能朝着两个特定的方向移动，不能朝着正确的方向移动。</li>
 </ul>
-<h4 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h4><p>$$<br>\tanh(x) &#x3D; \frac{e^x - e^{-x}}{e^x + e^{-x}}<br>$$</p>
+<h3 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h3><p>$$<br>\tanh(x) &#x3D; \frac{e^x - e^{-x}}{e^x + e^{-x}}<br>$$</p>
 <p><img src="https://img.fangkaipeng.com/blog_img/20220713141018.png" srcset="/img/loading.gif" lazyload alt="image-20220713141018720"></p>
 <p>​    梯度消失问题仍然存在</p>
-<h4 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h4><p>下图左是ReLU函数图像，右图是来自论文 <a target="_blank" rel="noopener" href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al.</a> 中将ReLU的训练效果与Tanh的比较，有6倍的提升。</p>
+<h3 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h3><p>下图左是ReLU函数图像，右图是来自论文 <a target="_blank" rel="noopener" href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al.</a> 中将ReLU的训练效果与Tanh的比较，有6倍的提升。</p>
 <p><img src="https://img.fangkaipeng.com/blog_img/20220713141320.png" srcset="/img/loading.gif" lazyload alt="image-20220713141320164"></p>
 <p>ReLU全称为Rectified Linear Unit，整流线性单元，这在最近几年非常流行。它的公式为 ，换句话说，激活与否的门槛被简单得设置成了0，ReLu函数有以下几个优劣：</p>
 <ul>
@@ -300,7 +300,7 @@
 <li><strong>更高效：</strong> 与Sigmoid和Tanh相比，ReLU函数的计算速度更快。</li>
 <li><strong>较为脆弱：</strong> 存在Dead Relu Problem，即某些神经元可能永远不会被激活，进而导致相应参数一直得不到更新，产生该问题主要原因包括参数初始化问题以及学习率设置过大问题</li>
 </ul>
-<h4 id="Leaky-ReLu"><a href="#Leaky-ReLu" class="headerlink" title="Leaky ReLu"></a>Leaky ReLu</h4><p>$$<br>f(x) &#x3D;<br>\begin{cases}<br>x, &amp; x \geq 0 \\<br>\alpha x, &amp; x &lt; 0<br>\end{cases}<br>$$</p>
+<h3 id="Leaky-ReLu"><a href="#Leaky-ReLu" class="headerlink" title="Leaky ReLu"></a>Leaky ReLu</h3><p>$$<br>f(x) &#x3D;<br>\begin{cases}<br>x, &amp; x \geq 0 \\<br>\alpha x, &amp; x &lt; 0<br>\end{cases}<br>$$</p>
 <p>Leaky ReLU函数是对解决ReLU神经元死亡的一种尝试。与ReLU对负数全变为0不同，leaky ReLU给负半边一个很小的正斜率，也就是说，表达式变成 ，其中的 $a$是一个很小的常数。有些人报告了这种激活函数的成功，但结果并不总是一致的。此外，负半边区域中的斜率 也可以成为每个神经元的一个参数进行学习得来，这就是PReLU</p>
 
                 
