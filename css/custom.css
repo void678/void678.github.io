@@ -1,4 +1,9 @@
 /* 隐藏 Fluid 页脚的总访客数，只显示总访问量和建站时间 */
-#footer .statistics span:last-child {
+#footer .statistics span,
+#footer .statistics .busuanzi-value {
+  display: inline !important;
+}
+#footer .statistics span:last-child,
+#footer .statistics .busuanzi-uv {
   display: none !important;
 } 
