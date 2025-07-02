@@ -33,12 +33,13 @@
 <meta property="og:image" content="https://void678.github.io/posts/ae122e4c9042/e.png">
 <meta property="og:image" content="https://img.fangkaipeng.com/blog_img/20220716215504.png">
 <meta property="article:published_time" content="2025-07-01T10:36:50.000Z">
-<meta property="article:modified_time" content="2025-07-02T02:51:46.685Z">
+<meta property="article:modified_time" content="2025-07-02T02:54:31.543Z">
 <meta property="article:author" content="zhangshuxuan">
 <meta property="article:tag" content="神经网络">
 <meta property="article:tag" content="预处理">
 <meta property="article:tag" content="正则化">
 <meta property="article:tag" content="归一化">
+<meta property="article:tag" content="损失函数">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://void678.github.io/posts/ae122e4c9042/e.png">
   
@@ -281,7 +282,7 @@
         
         
         
-          78 分钟
+          77 分钟
         
       </span>
     
@@ -438,10 +439,10 @@ c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></spa
 <p>综上所述：</p>
 <ul>
 <li>推荐的预处理方法是将数据居中，使其平均值为零，并沿每个特征将其尺度归一化为[-1, 1]。</li>
-<li>通过从标准偏差为 的高斯分布中提取权重进行初始化，其中 n 是神经元的输入个数。例如，在numpy中：<code>w = np.random.randn(n) * sqrt(2.0/n)</code>。使</li>
+<li>通过从标准偏差为 的高斯分布中提取权重进行初始化，其中 n 是神经元的输入个数。例如，在numpy中：<code>w = np.random.randn(n) * sqrt(2.0/n)</code>。</li>
 <li>用L2正则化 和 dropout（倒置版）。</li>
 <li>使用批量正则化 batch normalization</li>
-<li>我们讨论了你在实践中可能要执行的不同任务，以及每个任务最常见的损失函数。现在我们已经对数据进行了预处理，并建立和初始化了模型。在下一节中，我们将看看学习过程和它的动态变化。</li>
+<li>我们讨论了你在实践中可能要执行的不同任务，以及每个任务最常见的损失函数。现在我们已经对数据进行了预处理，并建立和初始化了模型。</li>
 </ul>
 
                 
@@ -483,6 +484,8 @@ c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></spa
         <a href="/tags/%E6%AD%A3%E5%88%99%E5%8C%96/" class="print-no-link">#正则化</a>
       
         <a href="/tags/%E5%BD%92%E4%B8%80%E5%8C%96/" class="print-no-link">#归一化</a>
+      
+        <a href="/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" class="print-no-link">#损失函数</a>
       
     </div>
   
