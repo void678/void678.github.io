@@ -23,25 +23,24 @@
   <meta name="author" content="zhangshuxuan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一个状态的value实际上依赖于其他状态的value 强化学习（Reinforcement Learning, RL）是人工智能领域中极具代表性的决策学习方法。本文将围绕“状态价值（state value）”和“Bellman方程”这两个核心概念，结合简单的网格世界（Grid-World）例子，帮助理解如何用数学工具评价和优化策略。  1. 为什么要关注回报（Return）？ 在RL中，回报（re">
+    <meta name="description" content="强化学习（Reinforcement Learning, RL）是人工智能领域中极具代表性的决策学习方法。本文将围绕“状态价值（state value）”和“Bellman方程”这两个核心概念，结合简单的网格世界（Grid-World）例子，帮助理解如何用数学工具评价和优化策略。  1. 为什么要关注回报（Return）？ 在RL中，回报（return）是指智能体在一条轨迹上获得的所有奖励（rew">
 <meta property="og:type" content="article">
-<meta property="og:title" content="贝尔曼公式">
+<meta property="og:title" content="State Value状态价值">
 <meta property="og:url" content="https://void678.github.io/posts/d18e37c34fbe/index.html">
 <meta property="og:site_name" content="void678">
-<meta property="og:description" content="一个状态的value实际上依赖于其他状态的value 强化学习（Reinforcement Learning, RL）是人工智能领域中极具代表性的决策学习方法。本文将围绕“状态价值（state value）”和“Bellman方程”这两个核心概念，结合简单的网格世界（Grid-World）例子，帮助理解如何用数学工具评价和优化策略。  1. 为什么要关注回报（Return）？ 在RL中，回报（re">
+<meta property="og:description" content="强化学习（Reinforcement Learning, RL）是人工智能领域中极具代表性的决策学习方法。本文将围绕“状态价值（state value）”和“Bellman方程”这两个核心概念，结合简单的网格世界（Grid-World）例子，帮助理解如何用数学工具评价和优化策略。  1. 为什么要关注回报（Return）？ 在RL中，回报（return）是指智能体在一条轨迹上获得的所有奖励（rew">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:%5CHexo%5Chexo-blog%5Csource_posts%5C%E8%B4%9D%E5%B0%94%E6%9B%BC%E5%85%AC%E5%BC%8F%5Cva.png">
 <meta property="og:image" content="https://void678.github.io/posts/d18e37c34fbe/va.png">
 <meta property="article:published_time" content="2025-07-02T13:27:31.000Z">
-<meta property="article:modified_time" content="2025-07-02T15:26:38.255Z">
+<meta property="article:modified_time" content="2025-07-02T15:38:09.017Z">
 <meta property="article:author" content="zhangshuxuan">
-<meta property="article:tag" content="公式">
+<meta property="article:tag" content="贝尔曼公式">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:%5CHexo%5Chexo-blog%5Csource_posts%5C%E8%B4%9D%E5%B0%94%E6%9B%BC%E5%85%AC%E5%BC%8F%5Cva.png">
+<meta name="twitter:image" content="https://void678.github.io/posts/d18e37c34fbe/va.png">
   
   
   
-  <title>贝尔曼公式 - void678</title>
+  <title>State Value状态价值 - void678</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -239,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="贝尔曼公式"></span>
+            <span id="subtitle" data-typed-text="State Value状态价值"></span>
           
         </div>
 
@@ -324,13 +323,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">贝尔曼公式</h1>
+            <h1 id="seo-header">State Value状态价值</h1>
             
             
               <div class="markdown-body">
                 
-                <p>一个状态的value实际上依赖于其他状态的value</p>
-<p>强化学习（Reinforcement Learning, RL）是人工智能领域中极具代表性的决策学习方法。本文将围绕“状态价值（state value）”和“Bellman方程”这两个核心概念，结合简单的网格世界（Grid-World）例子，帮助理解如何用数学工具评价和优化策略。</p>
+                <p>强化学习（Reinforcement Learning, RL）是人工智能领域中极具代表性的决策学习方法。本文将围绕“状态价值（state value）”和“Bellman方程”这两个核心概念，结合简单的网格世界（Grid-World）例子，帮助理解如何用数学工具评价和优化策略。</p>
 <hr>
 <h2 id="1-为什么要关注回报（Return）？">1. 为什么要关注回报（Return）？</h2>
 <p>在RL中，回报（return）是指智能体在一条轨迹上获得的所有奖励（reward）的加权和，通常采用折扣回报（discounted return）：</p>
@@ -340,7 +338,6 @@
 <p>回报的重要性在于：它是评价策略优劣的核心标准。通过计算不同策略下的期望回报，我们可以用数学方法量化“哪种策略更好”。</p>
 <h2 id="2-例子：不同策略的回报对比">2. 例子：不同策略的回报对比</h2>
 <p>考虑如下<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2\times2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>网格世界，每个格子有不同的奖励，黄色为禁区（负奖励），蓝色为目标（正奖励）：</p>
-<p><img src="D:%5CHexo%5Chexo-blog%5Csource_posts%5C%E8%B4%9D%E5%B0%94%E6%9B%BC%E5%85%AC%E5%BC%8F%5Cva.png" srcset="/img/loading.gif" lazyload alt="image-20250702232521976"></p>
 <img src="/posts/d18e37c34fbe/va.png" srcset="/img/loading.gif" lazyload class="" title="return">
 <ul>
 <li>
@@ -559,7 +556,7 @@ M347 1759 V0 H263 V1759 v1200 v1759 h84z"/></svg></span></span></span><span clas
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AC%E5%BC%8F/" class="print-no-link">#公式</a>
+        <a href="/tags/%E8%B4%9D%E5%B0%94%E6%9B%BC%E5%85%AC%E5%BC%8F/" class="print-no-link">#贝尔曼公式</a>
       
     </div>
   
@@ -571,7 +568,7 @@ M347 1759 V0 H263 V1759 v1200 v1759 h84z"/></svg></span></span></span><span clas
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>贝尔曼公式</div>
+      <div>State Value状态价值</div>
       <div>https://void678.github.io/posts/d18e37c34fbe/</div>
     </div>
     <div class="license-meta">
